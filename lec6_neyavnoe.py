@@ -6,9 +6,9 @@ def circle_plotter(radius = 10):
 
     X, Y = np.meshgrid (x, y) #meshgrid делает точки
 
-    fxy = X**2 + Y**2 - radius**2
+    fxy = X**2 + Y**2 + radius**2
 
     plt.contour(X, Y, fxy, levels = [0]) #0 потомучто радиус уже перенесли 
-    plt.savefig('pic_1.png')
+    plt.savefig('pic_2.png')
 
 circle_plotter()
