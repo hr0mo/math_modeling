@@ -1,15 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt 
-import matplotlib.animation as animation
+from matplotlib.animation import FuncAnimation
 fig, ax = plt.subplots()
 ball, = plt.plot([], [], 'o', color = '#17EEB3', label = 'Ball')
-ax.set_xlim([2, 0.04])
-
-scat = ax.scatter(1, 0)
-y = np.linspace(2, 0.04) 
-def animate(i):
-    scat.set_offsets((y[i], 0))
-    return scat,
-
-ani = animation.FuncAnimation(fig, animate, repeat=True, frames=len(y) - 1, interval=50)
-ani.save('lec_8_project_animation.gif')
+xdata, ydata = [], []
+ax.set_xlim(2, 2*np.pi) 
+ax.set_ylim(0, 10)
+def update(frame): 
+    xdata.append(frame) 
+    ydata.append(np.sin(frame)) 
+    anim_object.set_data(xdata, ydata) 
+    return anim_object,
+ani = FuncAnimation(fig, update, frames=np.arange(0,2*np.pi, 0.1), interval = 100) 
+ani.save('project.gif')
