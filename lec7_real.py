@@ -1,14 +1,15 @@
-import matplotlib.pyplot as plt
 import numpy as np
- 
-alpha = np.arange(-2*np.pi, 2*np.pi, 0.1) # Параметр
-R = 3
- 
-x = R * np.cos(alpha)
-y = R * np.sin(alpha)
- 
-plt.plot(x, y, ls='--', lw=3)
- 
-plt.axis('equal')
- 
-plt.savefig('pic_6.png')
+import matplotlib.pyplot as plt 
+from matplotlib.animation import FuncAnimation
+fig, ax = plt.subplots()
+ball, = plt.plot([], [], 'o', color = '#17EEB3', label = 'Ball')
+xdata, ydata = [], []
+ax.set_xlim(2, 2*np.pi) 
+ax.set_ylim(0, 10)
+def update(frame): 
+    xdata.append(frame) 
+    ydata.append(np.sin(frame)) 
+    anim_object.set_data(xdata, ydata) 
+    return anim_object,
+ani = FuncAnimation(fig, update, frames=np.arange(0,2*np.pi, 0.1), interval = 100) 
+ani.save('project5.gif')
